@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recomendador de Filmes</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1c1c1c, #3a3a3a);
+            color: #fff;
+            text-align: center;
+        }
+        .container {
+            margin: 50px auto;
+            padding: 30px;
+            max-width: 600px;
+            background-color: #2c2c2c;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #ffcc00;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 2px solid #ffcc00;
+            border-radius: 5px;
+            margin-top: 10px;
+            outline: none;
+        }
+        input:focus {
+            border-color: #ffd700;
+            box-shadow: 0 0 8px rgba(255, 204, 0, 0.8);
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #000;
+            background-color: #ffcc00;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #ffd700;
+        }
+        #recommendation {
+            margin-top: 20px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #ffcc00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎥 Recomendador de Filmes 🎬</h1>
+        <p>Informe um gênero de filme (ex.: ação, comédia, terror):</p>
+        <input type="text" id="genreInput" placeholder="Digite o gênero aqui...">
+        <button onclick="recommendMovie()">Recomendar Filme</button>
+        <p id="recommendation"></p>
+    </div>
+
+    <script>
+
+        const movies = {
+            ação: ["Vingadores: Ultimato", "Missão Impossível", "Mad Max: Estrada da Fúria"],
+            comédia: ["Se Beber, Não Case!", "Todo Mundo em Pânico", "As Branquelas"],
+            terror: ["Invocação do Mal", "It: A Coisa", "O Exorcista"],
+            romance: ["Diário de uma Paixão", "Titanic", "La La Land"],
+            ficção: ["Interestelar", "Matrix", "Blade Runner 2049"],
+            aventura: ["O Senhor dos Anéis", "Harry Potter", "Jurassic Park"]
+        };
+
+        function recommendMovie() {
+            const genre = document.getElementById("genreInput").value.toLowerCase();
+            const recommendation = document.getElementById("recommendation");
+
+            if (movies[genre]) {
+                const randomIndex = Math.floor(Math.random() * movies[genre].length);
+                recommendation.textContent = `Recomendamos assistir: "${movies[genre][randomIndex]}"`;
+            } else {
+                recommendation.textContent = "Gênero não encontrado. Tente algo como ação, comédia ou terror.";
+            }
+        }
+    </script>
+</body>
+</html>
